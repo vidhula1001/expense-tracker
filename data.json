@@ -1,0 +1,14 @@
+[
+    {
+        "amount": 500.0,
+        "category": "food",
+        "description": "lunch",
+        "date": "2025-12-27"
+    },
+    {
+        "amount": 400.0,
+        "category": "clothes",
+        "description": "graduation",
+        "date": "2025-12-27"
+    }
+]
