@@ -76,3 +76,45 @@ def search_expense():
 
     if not found:
         print("No matching expenses found.")
+
+import csv
+
+
+def export_to_csv():
+    data = load_data()
+
+    if not data:
+        print("No expenses to export.")
+        return
+
+    filename = "expenses.csv"
+
+    with open(filename, mode="w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(
+            file,
+            fieldnames=["date", "amount", "category", "description"]
+        )
+        writer.writeheader()
+        writer.writerows(data)
+
+    print(f"✅ Expenses exported successfully to {filename}")
+
+from collections import defaultdict
+
+
+def monthly_summary():
+    data = load_data()
+
+    if not data:
+        print("No expenses available.")
+        return
+
+    summary = defaultdict(float)
+
+    for e in data:
+        month = e["date"][:7]  # YYYY-MM
+        summary[month] += e["amount"]
+
+    print("\n--- Monthly Expense Summary ---")
+    for month, total in summary.items():
+        print(f"{month}: ₹{total}")
